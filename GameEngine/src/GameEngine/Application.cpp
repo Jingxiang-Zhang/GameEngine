@@ -1,6 +1,7 @@
 #include "gepch.h"
 #include "Application.h"
 #include <glad/glad.h>
+#include "Input.h"
 
 namespace GE
 {
@@ -14,7 +15,7 @@ namespace GE
 
 	Application::Application()
 	{
-		GE_CORE_ASSERT(!s_Instance, "Application already exist!");
+		GE_CORE_ASSERT(s_Instance == nullptr, "Application already exist!");
 		s_Instance = this;
 
 		m_Window = std::unique_ptr<Window>(Window::Create());
@@ -44,7 +45,7 @@ namespace GE
 	{
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
-		GE_CORE_INFO("{0}", e);
+		// GE_CORE_INFO("{0}", e);
 
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();) 
 		{
@@ -63,6 +64,9 @@ namespace GE
 			for (Layer* layer : m_LayerStack) {
 				layer->OnUpdate();
 			}
+
+			// auto [x, y] = Input::GetMousePosition();
+			// GE_CORE_TRACE("Mouse Position: {0}, {1}", x, y);
 
 			m_Window->OnUpdate();
 		}

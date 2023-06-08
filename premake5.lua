@@ -12,16 +12,18 @@ workspace "GameEngine"
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 -- include (copy) "GameEngine/vendor/GLFW/premake5.lua" to here
-include "GameEngine/vendor/GLFW"
-include "GameEngine/vendor/GLAD"
-include "GameEngine/vendor/imgui"
+group "Dependencies"
+	include "GameEngine/vendor/GLFW"
+	include "GameEngine/vendor/GLAD"
+	include "GameEngine/vendor/imgui"
 
-
+group ""
 
 project "GameEngine"
 	location "GameEngine"
 	kind "SharedLib"
 	language "C++"
+	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -67,21 +69,25 @@ project "GameEngine"
 
 		postbuildcommands
 		{
+			("IF NOT EXIST ..\\bin\\" .. outputdir .. "\\Sandbox mkdir ..\\bin\\" .. outputdir .. "\\Sandbox"),
 			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
 		}
 
 	filter "configurations:Debug"
 		defines "GE_DEBUG"
+		runtime "Debug"
 		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "GE_RELEASE"
+		runtime "Release"
 		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "GE_DIST"
+		runtime "Release"
 		buildoptions "/MD"
 		optimize "On"
 
@@ -89,6 +95,7 @@ project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
+	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -112,7 +119,6 @@ project "Sandbox"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
