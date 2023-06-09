@@ -43,7 +43,8 @@ project "GameEngine"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{prj.name}/vendor/GLFW/include",
 		"%{prj.name}/vendor/Glad/include",
-		"%{prj.name}/vendor/imgui"
+		"%{prj.name}/vendor/imgui",
+		"%{prj.name}/vendor/glm"
 	}
 
 	links
@@ -109,7 +110,8 @@ project "Sandbox"
 	includedirs
 	{
 		"GameEngine/vendor/spdlog/include",
-		"GameEngine/src"
+		"GameEngine/src", 
+		"GameEngine/vendor/glm"
 	}
 
 	links
