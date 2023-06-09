@@ -164,9 +164,6 @@ IF EXIST ..\bin\Dist-windows-x86_64\GameEngine\GameEngine.dll\ (xcopy /Q /E /Y /
     <ClInclude Include="src\GameEngine\Events\KeyEvent.h" />
     <ClInclude Include="src\GameEngine\Events\MouseEvent.h" />
     <ClInclude Include="src\GameEngine\ImGui\ImGuiLayer.h" />
-    <ClInclude Include="src\GameEngine\ImGui\imgui_impl_glfw.h" />
-    <ClInclude Include="src\GameEngine\ImGui\imgui_impl_opengl3.h" />
-    <ClInclude Include="src\GameEngine\ImGui\imgui_impl_opengl3_loader.h" />
     <ClInclude Include="src\GameEngine\Input.h" />
     <ClInclude Include="src\GameEngine\KeyCodes.h" />
     <ClInclude Include="src\GameEngine\Layer.h" />
@@ -179,9 +176,8 @@ IF EXIST ..\bin\Dist-windows-x86_64\GameEngine\GameEngine.dll\ (xcopy /Q /E /Y /
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameEngine\Application.cpp" />
+    <ClCompile Include="src\GameEngine\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\GameEngine\ImGui\ImGuiLayer.cpp" />
-    <ClCompile Include="src\GameEngine\ImGui\imgui_impl_glfw.cpp" />
-    <ClCompile Include="src\GameEngine\ImGui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="src\GameEngine\Layer.cpp" />
     <ClCompile Include="src\GameEngine\LayerStack.cpp" />
     <ClCompile Include="src\GameEngine\Log.cpp" />

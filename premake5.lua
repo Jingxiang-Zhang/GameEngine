@@ -110,8 +110,9 @@ project "Sandbox"
 	includedirs
 	{
 		"GameEngine/vendor/spdlog/include",
-		"GameEngine/src", 
-		"GameEngine/vendor/glm"
+		"GameEngine/src",
+		"GameEngine/vendor/glm",
+		"GameEngine/vendor"
 	}
 
 	links

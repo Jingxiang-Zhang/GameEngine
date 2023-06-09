@@ -5,6 +5,8 @@
 #include "LayerStack.h"
 #include "Events/ApplicationEvent.h"
 
+#include "GameEngine/ImGui/ImGuiLayer.h"
+
 namespace GE {
 
 	class GE_API Application
@@ -25,6 +27,7 @@ namespace GE {
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 

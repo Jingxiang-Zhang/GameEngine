@@ -20,6 +20,9 @@ namespace GE
 
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+
+		m_ImGuiLayer = new ImGuiLayer();
+		PushOverlay(m_ImGuiLayer); 
 		// m_Window->SetEventCallback([&](Event& t) { });
 
 		// the input type is std::function<void(Event&)> for SetEventCallback
@@ -64,9 +67,11 @@ namespace GE
 			for (Layer* layer : m_LayerStack) {
 				layer->OnUpdate();
 			}
-
-			// auto [x, y] = Input::GetMousePosition();
-			// GE_CORE_TRACE("Mouse Position: {0}, {1}", x, y);
+			m_ImGuiLayer->Begin();
+			for (Layer* layer : m_LayerStack) {
+				layer->OnImGuiRender();
+			}
+			m_ImGuiLayer->End();
 
 			m_Window->OnUpdate();
 		}

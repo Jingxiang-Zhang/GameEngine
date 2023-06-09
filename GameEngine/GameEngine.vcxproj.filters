@@ -43,15 +43,6 @@
     <ClInclude Include="src\GameEngine\ImGui\ImGuiLayer.h">
       <Filter>GameEngine\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameEngine\ImGui\imgui_impl_glfw.h">
-      <Filter>GameEngine\ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameEngine\ImGui\imgui_impl_opengl3.h">
-      <Filter>GameEngine\ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameEngine\ImGui\imgui_impl_opengl3_loader.h">
-      <Filter>GameEngine\ImGui</Filter>
-    </ClInclude>
     <ClInclude Include="src\GameEngine\Input.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
@@ -82,13 +73,10 @@
     <ClCompile Include="src\GameEngine\Application.cpp">
       <Filter>GameEngine</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameEngine\ImGui\ImGuiBuild.cpp">
+      <Filter>GameEngine\ImGui</Filter>
+    </ClCompile>
     <ClCompile Include="src\GameEngine\ImGui\ImGuiLayer.cpp">
-      <Filter>GameEngine\ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameEngine\ImGui\imgui_impl_glfw.cpp">
-      <Filter>GameEngine\ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameEngine\ImGui\imgui_impl_opengl3.cpp">
       <Filter>GameEngine\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\GameEngine\Layer.cpp">

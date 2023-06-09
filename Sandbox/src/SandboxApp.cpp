@@ -1,5 +1,5 @@
 #include <GameEngine.h>
-
+#include <imgui/imgui.h>
 
 class ExampleLayer : public GE::Layer
 {
@@ -15,6 +15,13 @@ public:
 			GE_INFO("A is pressed");
 		}
 		// GE_INFO("ExampleLayer::Update");
+	}
+
+	virtual void OnImGuiRender() override
+	{
+		//ImGui::Begin("Test");
+		//ImGui::Text("Hello world");
+		//ImGui::End();
 	}
 
 	void OnEvent(GE::Event& event) override
@@ -34,7 +41,6 @@ public:
 	Sandbox() 
 	{
 		PushLayer(new ExampleLayer());
-		PushOverlay(new GE::ImGuiLayer());
 	}
 	~Sandbox() {}
 };
