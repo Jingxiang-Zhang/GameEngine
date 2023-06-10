@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GameEngine/Window.h"
+#include "Platform/OpenGL/OpenGLContext.h"
 #include <GLFW/glfw3.h>
 
 namespace GE {
@@ -27,7 +28,8 @@ namespace GE {
 		virtual void Shutdown();
 	private:
 		GLFWwindow* m_Window;
-		
+		GraphicsContext* m_Context;
+
 		struct WindowData
 		{
 			std::string Title;

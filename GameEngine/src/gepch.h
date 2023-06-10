@@ -16,6 +16,7 @@
 
 #include <cstdint>
 
+#include "GameEngine/Core.h"
 #include "GameEngine/Log.h"
 
 #ifdef GE_PLATFORM_WiNDOWS

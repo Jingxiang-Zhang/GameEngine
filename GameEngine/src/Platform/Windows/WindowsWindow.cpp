@@ -49,10 +49,9 @@ namespace GE {
 		//glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_Window);
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		GE_CORE_ASSERT(status, "Failed to initialize Glad!");
-
+		m_Context = new OpenGLContext(m_Window);
+		m_Context->Init();
+		
 		++s_GLFWWindowCount;
 		// Give a user define pointer to this window created by GLFW
 		// This pointer can also be saved somewhere else
@@ -164,7 +163,7 @@ namespace GE {
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_Context->SwapBuffers();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)
