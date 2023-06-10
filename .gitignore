@@ -5,4 +5,5 @@ bin-int/
 
 # Files
 *.user
+*.tmp
 Note.docx
