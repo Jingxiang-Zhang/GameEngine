@@ -4,7 +4,7 @@
 #include "Window.h"
 #include "LayerStack.h"
 #include "Events/ApplicationEvent.h"
-
+#include "GameEngine/Renderer/Shader.h"
 #include "GameEngine/ImGui/ImGuiLayer.h"
 
 namespace GE {
@@ -30,8 +30,11 @@ namespace GE {
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
-
+		
+		// temporary
 		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
+		std::unique_ptr<Shader> m_Shader;
+
 	private:
 		static Application* s_Instance;
 	};
