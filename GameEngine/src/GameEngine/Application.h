@@ -5,6 +5,8 @@
 #include "LayerStack.h"
 #include "Events/ApplicationEvent.h"
 #include "GameEngine/Renderer/Shader.h"
+#include "GameEngine/Renderer/Buffer.h"
+
 #include "GameEngine/ImGui/ImGuiLayer.h"
 
 namespace GE {
@@ -32,8 +34,11 @@ namespace GE {
 		LayerStack m_LayerStack;
 		
 		// temporary
-		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
+		unsigned int m_VertexArray;
 		std::unique_ptr<Shader> m_Shader;
+		std::unique_ptr<VertexBuffer> m_VertexBuffer;
+		std::unique_ptr<IndexBuffer> m_IndexBuffer;
+
 
 	private:
 		static Application* s_Instance;
