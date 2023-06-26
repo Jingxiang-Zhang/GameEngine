@@ -4,11 +4,7 @@
 #include "Window.h"
 #include "LayerStack.h"
 #include "Events/ApplicationEvent.h"
-#include "GameEngine/Renderer/Shader.h"
-#include "GameEngine/Renderer/Buffer.h"
-#include "GameEngine/Renderer/VertexArray.h"
 #include "GameEngine/ImGui/ImGuiLayer.h"
-#include "GameEngine/Renderer/OrthographicCamera.h"
 
 
 namespace GE {
@@ -34,16 +30,7 @@ namespace GE {
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
-		
-		// temporary
-		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<VertexArray> m_VertexArray;
 
-		// test 2
-		std::shared_ptr<Shader> m_Shader2;
-		std::shared_ptr<VertexArray> m_SquareVA;
-
-		OrthographicCamera m_Camera;
 	private:
 		static Application* s_Instance;
 	};
