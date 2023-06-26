@@ -100,8 +100,9 @@ public:
 			#version 330 core
 			layout(location = 0) out vec4 color;
 			in vec3 v_Position;
+			uniform vec4 u_Color;
 			void main() {
-				color = vec4(0.2, 0.3, 0.8, 1.0);
+				color = u_Color;
 			}
 		)";
 		m_Shader2.reset(new GE::Shader(vertexSrc2, fragmentSrc2));
@@ -134,10 +135,19 @@ public:
 		GE::Renderer::BeginScene(m_Camera);
 		
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
+
+		glm::vec4 redColor(0.8f, 0.2f, 0.3f, 1.0f);
+		glm::vec4 blueColor(0.2f, 0.3f, 0.8f, 1.0f);
+
+
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
 				glm::vec3 pos(i * 0.11, j * 0.11f, 0.0);
 				glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
+				if (j % 2 == 0)
+					m_Shader2->UploadUniformFloat4("u_Color", redColor);
+				else
+					m_Shader2->UploadUniformFloat4("u_Color", blueColor);
 				GE::Renderer::Submit(m_Shader2, m_SquareVA, transform);
 			}
 		}
