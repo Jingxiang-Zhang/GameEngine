@@ -9,6 +9,8 @@
 #include "GameEngine/ImGui/ImGuiLayer.h"
 #include "GameEngine/Input.h"
 
+#include "GameEngine/Core/Timestep.h"
+
 // game engine key codes
 #include "GameEngine/KeyCodes.h"
 #include "GameEngine/MouseCodes.h"

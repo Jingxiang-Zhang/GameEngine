@@ -6,6 +6,8 @@
 #include "Events/ApplicationEvent.h"
 #include "GameEngine/ImGui/ImGuiLayer.h"
 
+#include "GameEngine/Core/Timestep.h"
+
 
 namespace GE {
 
@@ -26,10 +28,13 @@ namespace GE {
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 
+	private:
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
+		Timestep m_Timestep;
+		float m_LastFrameTime;
 
 	private:
 		static Application* s_Instance;

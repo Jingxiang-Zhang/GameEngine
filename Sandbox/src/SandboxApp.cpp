@@ -101,21 +101,23 @@ public:
 		m_Shader2.reset(new GE::Shader(vertexSrc2, fragmentSrc2));
 	}
 
-	void OnUpdate() override
+	void OnUpdate(GE::Timestep ts) override
 	{
+		GE_TRACE("Delta time: {0}s ({1}ms)", ts.GetSeconds(), ts.GetMilliseconds());
+
 		if(GE::Input::IsKeyPressed(GE::Key::Left))
-			m_CameraPosition.x += m_CameraMoveSpeed;
+			m_CameraPosition.x += m_CameraMoveSpeed * ts;
 		else if (GE::Input::IsKeyPressed(GE::Key::Right))
-			m_CameraPosition.x -= m_CameraMoveSpeed;
+			m_CameraPosition.x -= m_CameraMoveSpeed * ts;
 		if (GE::Input::IsKeyPressed(GE::Key::Down))
-			m_CameraPosition.y += m_CameraMoveSpeed;
+			m_CameraPosition.y += m_CameraMoveSpeed * ts;
 		else if (GE::Input::IsKeyPressed(GE::Key::Up))
-			m_CameraPosition.y -= m_CameraMoveSpeed;
+			m_CameraPosition.y -= m_CameraMoveSpeed * ts;
 
 		if (GE::Input::IsKeyPressed(GE::Key::A))
-			m_CameraRotation -= m_CameraRotationSpeed;
+			m_CameraRotation -= m_CameraRotationSpeed * ts;
 		else if (GE::Input::IsKeyPressed(GE::Key::D))
-			m_CameraRotation += m_CameraRotationSpeed;
+			m_CameraRotation += m_CameraRotationSpeed * ts;
 
 		GE::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		GE::RenderCommand::Clear();
@@ -169,9 +171,9 @@ private:
 
 	GE::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
-	float m_CameraMoveSpeed = 0.03f;
+	float m_CameraMoveSpeed = 0.3f;
 	float m_CameraRotation = 0.0f;
-	float m_CameraRotationSpeed = 0.5f;
+	float m_CameraRotationSpeed = 30.0f;
 
 };
 
