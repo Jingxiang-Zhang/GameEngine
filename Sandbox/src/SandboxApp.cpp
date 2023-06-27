@@ -20,7 +20,7 @@ public:
 			0.5f, -0.5f, 0.0f, 0.2f, 0.3f, 0.8f, 1.0f,
 			0.5f, 0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f,
 		};
-		std::shared_ptr<GE::VertexBuffer> m_VertexBuffer;
+		GE::Ref<GE::VertexBuffer> m_VertexBuffer;
 		m_VertexBuffer.reset(GE::VertexBuffer::Create(vertices, sizeof(vertices)));
 
 		GE::BufferLayout layout = {
@@ -32,7 +32,7 @@ public:
 
 		// generate index buffer
 		uint32_t indices[3] = { 0, 1, 2 };
-		std::shared_ptr<GE::IndexBuffer> m_IndexBuffer;
+		GE::Ref<GE::IndexBuffer> m_IndexBuffer;
 		m_IndexBuffer.reset(GE::IndexBuffer::Create(indices, 3));
 		m_VertexArray->SetIndexBuffer(m_IndexBuffer);
 
@@ -71,7 +71,7 @@ public:
 			0.5f,  0.5f, 0.0f,
 		   -0.5f,  0.5f, 0.0f
 		};
-		std::shared_ptr<GE::VertexBuffer> m_SquareVB;
+		GE::Ref<GE::VertexBuffer> m_SquareVB;
 		m_SquareVB.reset(GE::VertexBuffer::Create(SquareVertices, sizeof(SquareVertices)));
 		// define layout of the data
 		m_SquareVB->SetLayout({
@@ -81,7 +81,7 @@ public:
 		m_SquareVA->AddVertexBuffer(m_SquareVB);
 		// create vertex index
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		std::shared_ptr<GE::IndexBuffer> m_SquareIB;
+		GE::Ref<GE::IndexBuffer> m_SquareIB;
 		m_SquareIB.reset(GE::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
 		m_SquareVA->SetIndexBuffer(m_SquareIB);
 
@@ -183,12 +183,12 @@ public:
 
 private:
 	// test 1
-	std::shared_ptr<GE::Shader> m_Shader;
-	std::shared_ptr<GE::VertexArray> m_VertexArray;
+	GE::Ref<GE::Shader> m_Shader;
+	GE::Ref<GE::VertexArray> m_VertexArray;
 
 	// test 2
-	std::shared_ptr<GE::Shader> m_Shader2;
-	std::shared_ptr<GE::VertexArray> m_SquareVA;
+	GE::Ref<GE::Shader> m_Shader2;
+	GE::Ref<GE::VertexArray> m_SquareVA;
 
 	GE::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
