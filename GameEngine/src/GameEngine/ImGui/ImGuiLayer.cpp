@@ -152,8 +152,8 @@ namespace GE {
 
 	void ImGuiLayer::OnImGuiRender()
 	{
-		static bool show;
-		ImGui::ShowDemoWindow(&show);
+		//static bool show;
+		//ImGui::ShowDemoWindow(&show);
 	}
 
 }

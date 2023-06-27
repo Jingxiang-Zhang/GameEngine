@@ -1,5 +1,6 @@
 #include "gepch.h"
 #include "GameEngine/Renderer/Renderer.h"
+#include "Platform/OpenGL/OpenGLShader.h"
 // #include "GameEngine/Renderer/Renderer2D.h"
 
 namespace GE {
@@ -39,8 +40,8 @@ namespace GE {
 		const std::shared_ptr<VertexArray>& vertexArray, const glm::mat4& transform)
 	{
 		shader->Bind();
-		shader->UploadUniformMat4("u_ViewProjection", s_SceneData->ViewProjectionMatrix);
-		shader->UploadUniformMat4("u_Transform", transform);
+		std::dynamic_pointer_cast<OpenGLShader>(shader)->UploadUniformMat4("u_ViewProjection", s_SceneData->ViewProjectionMatrix);
+		std::dynamic_pointer_cast<OpenGLShader>(shader)->UploadUniformMat4("u_Transform", transform);
 		vertexArray->Bind();
 		RenderCommand::DrawIndexed(vertexArray);
 	}

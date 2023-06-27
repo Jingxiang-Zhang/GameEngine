@@ -1,7 +1,8 @@
 #include <GameEngine.h>
 #include <imgui/imgui.h>
 #include <glm/gtc/matrix_transform.hpp>
-
+#include "Platform/OpenGL/OpenGLShader.h"
+#include <glm/gtc/type_ptr.hpp>
 
 class ExampleLayer : public GE::Layer
 {
@@ -55,7 +56,7 @@ public:
 				color = v_Color;
 			}
 		)";
-		m_Shader.reset(new GE::Shader(vertexSrc, fragmentSrc));
+		m_Shader.reset(GE::Shader::Create(vertexSrc, fragmentSrc));
 
 
 
@@ -105,7 +106,7 @@ public:
 				color = u_Color;
 			}
 		)";
-		m_Shader2.reset(new GE::Shader(vertexSrc2, fragmentSrc2));
+		m_Shader2.reset(GE::Shader::Create(vertexSrc2, fragmentSrc2));
 	}
 
 	void OnUpdate(GE::Timestep ts) override
@@ -136,18 +137,14 @@ public:
 		
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
-		glm::vec4 redColor(0.8f, 0.2f, 0.3f, 1.0f);
-		glm::vec4 blueColor(0.2f, 0.3f, 0.8f, 1.0f);
-
+		m_Shader2->Bind();
+		std::dynamic_pointer_cast<GE::OpenGLShader>(m_Shader2)->UploadUniformFloat4("u_Color", m_SquareColor);
 
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
 				glm::vec3 pos(i * 0.11, j * 0.11f, 0.0);
 				glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
-				if (j % 2 == 0)
-					m_Shader2->UploadUniformFloat4("u_Color", redColor);
-				else
-					m_Shader2->UploadUniformFloat4("u_Color", blueColor);
+
 				GE::Renderer::Submit(m_Shader2, m_SquareVA, transform);
 			}
 		}
@@ -157,10 +154,11 @@ public:
 	}
 
 
-
 	virtual void OnImGuiRender() override
 	{
-		
+		ImGui::Begin("Settings");
+		ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
+		ImGui::End();
 	}
 
 	void OnEvent(GE::Event& event) override
@@ -197,6 +195,8 @@ private:
 	float m_CameraMoveSpeed = 0.3f;
 	float m_CameraRotation = 0.0f;
 	float m_CameraRotationSpeed = 30.0f;
+
+	glm::vec4 m_SquareColor = { 0.8f, 0.2f, 0.3f, 1.0f };
 };
 
 class Sandbox : public GE::Application
