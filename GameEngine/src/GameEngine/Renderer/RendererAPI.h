@@ -27,9 +27,7 @@ namespace GE {
 		// virtual void SetLineWidth(float width) = 0;
 
 		inline static API GetAPI() { return s_API; }
-		static RendererAPI* Create();
-
-		// static Scope<RendererAPI> Create();
+		static Scope<RendererAPI> Create();
 	private:
 		static API s_API;
 	};

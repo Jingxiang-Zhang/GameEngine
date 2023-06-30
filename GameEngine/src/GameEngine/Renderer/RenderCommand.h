@@ -48,7 +48,7 @@ namespace GE {
 		//}
 	private:
 		// static Scope<RendererAPI> s_RendererAPI;
-	    static RendererAPI* s_RendererAPI;
+	    static Scope<RendererAPI> s_RendererAPI;
 
 	};
 

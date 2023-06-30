@@ -6,7 +6,7 @@ namespace GE {
 
 	RendererAPI::API RendererAPI::s_API = RendererAPI::API::OpenGL;
 
-	RendererAPI* RendererAPI::Create()
+	Scope<RendererAPI> RendererAPI::Create()
 	{
 		switch (s_API)
 		{
@@ -14,8 +14,7 @@ namespace GE {
 			GE_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); 
 			return nullptr;
 		case RendererAPI::API::OpenGL:  
-			// return CreateScope<OpenGLRendererAPI>();
-			return new OpenGLRendererAPI();
+			return CreateScope<OpenGLRendererAPI>();
 		}
 
 		GE_CORE_ASSERT(false, "Unknown RendererAPI!");

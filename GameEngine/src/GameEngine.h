@@ -28,6 +28,7 @@
 #include "GameEngine/Renderer/Shader.h"
 #include "GameEngine/Renderer/VertexArray.h"
 #include "GameEngine/Renderer/OrthographicCamera.h"
+#include "GameEngine/Renderer/Texture.h"
 
 // Entry Point
 #include "GameEngine/EntryPoint.h"

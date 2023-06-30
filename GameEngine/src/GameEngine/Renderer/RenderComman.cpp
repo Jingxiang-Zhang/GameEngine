@@ -4,6 +4,6 @@
 namespace GE {
 
 	// Scope<RendererAPI> RenderCommand::s_RendererAPI = RendererAPI::Create();
-	RendererAPI* RenderCommand::s_RendererAPI = RendererAPI::Create();
+	Scope<RendererAPI> RenderCommand::s_RendererAPI = RendererAPI::Create();
 
 }

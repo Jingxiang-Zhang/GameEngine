@@ -36,6 +36,8 @@ project "GameEngine"
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/stb_image/stb_image.h",
+		"%{prj.name}/vendor/stb_image/stb_image.cpp"
 	}
 
 	includedirs
@@ -45,7 +47,8 @@ project "GameEngine"
 		"%{prj.name}/vendor/GLFW/include",
 		"%{prj.name}/vendor/Glad/include",
 		"%{prj.name}/vendor/imgui",
-		"%{prj.name}/vendor/glm"
+		"%{prj.name}/vendor/glm",
+		"%{prj.name}/vendor/stb_image"
 	}
 
 	links
