@@ -134,10 +134,9 @@ public:
 			}
 		)";
 		m_TexuterShader = GE::Shader::Create(textureVertexSrc2, textureFragmentSrc2);
+		
 		m_Texture = GE::Texture2D::Create("assets/textures/Checkerboard.png");
-		m_Texture->Bind();
-		std::dynamic_pointer_cast<GE::OpenGLShader>(m_flatColorShader)->UploadUniformInt("u_Texture", 0);
-
+		m_ChernoLogoTexture = GE::Texture2D::Create("assets/textures/ChernoLogo.png");
 	}
 
 	void OnUpdate(GE::Timestep ts) override
@@ -180,8 +179,18 @@ public:
 				GE::Renderer::Submit(m_flatColorShader, m_SquareVA, transform);
 			}
 		}
+		std::dynamic_pointer_cast<GE::OpenGLShader>(m_flatColorShader)->UploadUniformInt("u_Texture", 0);
 
-		GE::Renderer::Submit(m_TexuterShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+
+		m_Texture->Bind();
+		GE::Renderer::Submit(m_TexuterShader, m_SquareVA,
+			glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -0.000001f)) *
+			glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+
+		m_ChernoLogoTexture->Bind();
+		GE::Renderer::Submit(m_TexuterShader, m_SquareVA, 
+			glm::scale(glm::mat4(1.0f), glm::vec3(1.0f)));
+
 
 		// triangle 
 		// GE::Renderer::Submit(m_Shader, m_VertexArray);
@@ -226,7 +235,7 @@ private:
 	GE::Ref<GE::Shader> m_flatColorShader, m_TexuterShader;
 	GE::Ref<GE::VertexArray> m_SquareVA;
 
-	GE::Ref<GE::Texture2D> m_Texture;
+	GE::Ref<GE::Texture2D> m_Texture, m_ChernoLogoTexture;
 
 	GE::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
