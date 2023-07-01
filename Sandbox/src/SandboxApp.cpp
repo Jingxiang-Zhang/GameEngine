@@ -109,9 +109,9 @@ public:
 				color = u_Color;
 			}
 		)";
-		m_flatColorShader = GE::Shader::Create(vertexSrc2, fragmentSrc2);
+		m_flatColorShader = GE::Shader::Create("shader1", vertexSrc2, fragmentSrc2);
 
-		m_TexuterShader = GE::Shader::Create("assets/shaders/Texture.glsl");
+		m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 		
 		m_Texture = GE::Texture2D::Create("assets/textures/Checkerboard.png");
 		m_ChernoLogoTexture = GE::Texture2D::Create("assets/textures/ChernoLogo.png");
@@ -161,12 +161,12 @@ public:
 
 
 		m_Texture->Bind();
-		GE::Renderer::Submit(m_TexuterShader, m_SquareVA,
+		GE::Renderer::Submit(m_ShaderLibrary.Get("Texture"), m_SquareVA,
 			glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -0.000001f)) *
 			glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		m_ChernoLogoTexture->Bind();
-		GE::Renderer::Submit(m_TexuterShader, m_SquareVA, 
+		GE::Renderer::Submit(m_ShaderLibrary.Get("Texture"), m_SquareVA,
 			glm::scale(glm::mat4(1.0f), glm::vec3(1.0f)));
 
 
@@ -205,12 +205,13 @@ public:
 	}
 
 private:
+	GE::ShaderLibrary m_ShaderLibrary;
 	// plot for triangle
 	GE::Ref<GE::Shader> m_Shader;
 	GE::Ref<GE::VertexArray> m_VertexArray;
 
 	// plot for flat color
-	GE::Ref<GE::Shader> m_flatColorShader, m_TexuterShader;
+	GE::Ref<GE::Shader> m_flatColorShader;
 	GE::Ref<GE::VertexArray> m_SquareVA;
 
 	GE::Ref<GE::Texture2D> m_Texture, m_ChernoLogoTexture;

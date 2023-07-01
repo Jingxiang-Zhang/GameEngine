@@ -78,8 +78,8 @@ namespace GE {
 
 	}
 
-	OpenGLShader::OpenGLShader(const std::string& vertexSrc, const std::string fragmentSrc)
-		:m_RendererID(0)
+	OpenGLShader::OpenGLShader(const std::string& name, const std::string& vertexSrc, const std::string fragmentSrc)
+		:m_RendererID(0), m_Name(name)
 	{
 		std::unordered_map<GLenum, std::string> sources;
 		sources[GL_VERTEX_SHADER] = vertexSrc;
@@ -118,7 +118,9 @@ namespace GE {
 		// Get a program object.
 		
 		GLuint program = glCreateProgram();
-		std::vector<GLenum> glShaderIDs;
+		GE_CORE_ASSERT(shaderSource.size() <= 2, "We only support 2 shaders for now");
+		std::array<GLenum, 2> glShaderIDs;
+		int glShaderIDIndex = 0;
 
 		for (auto& key : shaderSource) 
 		{
@@ -154,7 +156,7 @@ namespace GE {
 			}
 			// Attach our shaders to our program
 			glAttachShader(program, shader);
-			glShaderIDs.push_back(shader);
+			glShaderIDs[glShaderIDIndex++] = shader;
 		}
 
 		// Link our program
